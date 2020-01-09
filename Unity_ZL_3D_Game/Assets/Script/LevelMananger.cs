@@ -1,4 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class LevelMananger : MonoBehaviour
 {
@@ -6,7 +9,8 @@ public class LevelMananger : MonoBehaviour
     public GameObject objLight;        // 光照 (遊戲物件)
     public GameObject shin;
 
-    public Animator aniDoor;          // 門 (動畫)
+    private Animator aniDoor;          // 門 (動畫)
+    private Image imgCross;
 
     [Header("是否自動顯示技能")]
     public bool autoShowSkill;         // 是否顯示技能
@@ -17,6 +21,8 @@ public class LevelMananger : MonoBehaviour
     {
         // GameObject.Find("") 無法找到隱藏物件
         aniDoor = GameObject.Find("Door").GetComponent<Animator>();
+
+        imgCross = GameObject.Find("轉場").GetComponent<Image>();
 
         // 如果 是 顯示技能 呼叫 顯示技能方法
         if (autoShowSkill) ShowSkill();
@@ -47,5 +53,20 @@ public class LevelMananger : MonoBehaviour
         aniDoor.SetTrigger("開門觸發");
         objLight.SetActive(true);
         shin.SetActive(true);
+    }
+
+    public IEnumerator NextLevel()
+    {
+        print("載入下一關");
+
+        for (int i = 0; i < 10; i++)
+        {
+            imgCross.color += new Color(0, 0, 0, 0.1f);
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        yield return new WaitForSeconds(0.2f);
+
+        SceneManager.LoadScene("關卡2");
     }
 }

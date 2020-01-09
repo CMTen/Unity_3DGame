@@ -9,20 +9,36 @@ public class Player : MonoBehaviour
     private Joystick js;
     private Animator ani;
     private Transform target;
+    private LevelMananger levelManager;
 
     private void Start()
     {
         rig = GetComponent<Rigidbody>();
         ani = GetComponent<Animator>();
         js = GameObject.Find("虛擬搖桿").GetComponent<FixedJoystick>();
+
         target = GameObject.Find("目標").transform;
+
+        levelManager = FindObjectOfType<LevelMananger>();  // 透過類型尋找物件 ( 場景上只有一個 )
     }
 
+    // 固定更新：一秒執行 50 次 - 處理物理行為
     private void FixedUpdate()
     {
         move();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.name == "傳送區域")
+        {
+            StartCoroutine(levelManager.NextLevel());
+        }
+    }
+
+    /// <summary>
+    /// 移動
+    /// </summary>
     private void move()
     {
         float v = -js.Vertical;
