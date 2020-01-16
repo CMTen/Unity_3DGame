@@ -4,6 +4,8 @@ public class Player : MonoBehaviour
 {
     [Header("速度"), Range(0, 1500)]
     public float speed = 1.5f;
+    [Header("玩家資料")]
+    public PlayerData data;
 
     private Rigidbody rig;
     private Joystick js;
@@ -55,5 +57,10 @@ public class Player : MonoBehaviour
         Vector3 posTarget = new Vector3(target.position.x, transform.position.y, target.position.z);
         transform.LookAt(posTarget);
 
+    }
+
+    public void Hit(float damage)
+    {
+        data.hp -= damage;
     }
 }

@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour
 
     private Transform target;
 
+    private float timer;
+
     private void Start()
     {
         ani = GetComponent<Animator>();
@@ -32,7 +34,13 @@ public class Enemy : MonoBehaviour
     /// </summary>
     private void Wait()
     {
-        
+        ani.SetBool("跑步開關", false);
+        timer += Time.deltaTime;
+
+        if (timer > data.cd)
+        {
+            Attack();
+        }
     }
 
     /// <summary>
@@ -43,16 +51,28 @@ public class Enemy : MonoBehaviour
         Vector3 posTarget = target.position;
         posTarget.y = transform.position.y;
         transform.LookAt(posTarget);
-        ani.SetBool("跑步開關", true);
+        
         nav.SetDestination(target.position);
+
+        // print("剩餘距離：" + nav.remainingDistance);
+
+        if (nav.remainingDistance < data.stopDistance)
+        {
+            Wait();
+        }
+        else
+        {
+            ani.SetBool("跑步開關", true);
+        }
     }
 
     /// <summary>
     /// 攻擊
     /// </summary>
-    private void Attack()
+    protected virtual void Attack()
     {
-
+        ani.SetTrigger("攻擊觸發");
+        timer = 0;
     }
 
     /// <summary>
