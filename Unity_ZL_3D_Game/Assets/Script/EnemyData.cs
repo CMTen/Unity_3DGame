@@ -18,4 +18,10 @@ public class EnemyData : ScriptableObject
     public float attackY;
     public float attackLength;
     public float attackDelay;
+
+    [Header("遠距離子彈移動")]
+    public float attackZ;
+
+    [Header("遠距離子彈速度"), Range(0, 5000)]
+    public float BulletSpeed;
 }

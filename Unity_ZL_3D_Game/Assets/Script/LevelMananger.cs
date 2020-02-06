@@ -16,6 +16,8 @@ public class LevelMananger : MonoBehaviour
     public bool autoShowSkill;         // 是否顯示技能
     [Header("是否自動開門")]
     public bool autoOpenDoor;          // 是否自動開門
+    [Header("復活畫面")]
+    public GameObject panelRevival;
 
     private void Start()
     {
@@ -68,5 +70,21 @@ public class LevelMananger : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
 
         SceneManager.LoadScene("關卡2");
+    }
+
+    /// <summary>
+    /// 顯示復活畫面
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator ShowRevival()
+    {
+        panelRevival.SetActive(true);
+        Text textSecond = panelRevival.transform.GetChild(1).GetComponent<Text>();
+
+        for (int i = 10; i > 0; i--)
+        {
+            textSecond.text = i.ToString();
+            yield return new WaitForSeconds(1);
+        }
     }
 }

@@ -645,10 +645,10 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: 2b1360b9-0854-4ce0-914e-dbbd55ec14f9
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: Unity_ZL_3D_Game
+  organizationId: cmten
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
