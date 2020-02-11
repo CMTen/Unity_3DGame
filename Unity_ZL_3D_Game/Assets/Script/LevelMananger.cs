@@ -5,19 +5,25 @@ using System.Collections;
 
 public class LevelMananger : MonoBehaviour
 {
+    [Header("隨機技能與光照")]
     public GameObject skill;           // 隨機技能 (遊戲物件)
     public GameObject objLight;        // 光照 (遊戲物件)
+   
     public GameObject shin;
 
     private Animator aniDoor;          // 門 (動畫)
     private Image imgCross;
+    private AdManager adManager;
 
     [Header("是否自動顯示技能")]
     public bool autoShowSkill;         // 是否顯示技能
     [Header("是否自動開門")]
     public bool autoOpenDoor;          // 是否自動開門
-    [Header("復活畫面")]
+    [Header("復活畫面，看廣告復活")]
     public GameObject panelRevival;
+
+    public Button btnRevival;
+
 
     private void Start()
     {
@@ -37,6 +43,9 @@ public class LevelMananger : MonoBehaviour
 
         // 重複調用("方法名稱", 延遲時間, 重複頻率)
         // InvokeRepeating("OpenDoor", 0, 1.5f);
+
+        adManager = FindObjectOfType<AdManager>();
+        btnRevival.onClick.AddListener(adManager.ShowADRevival);
     }
 
     /// <summary>
@@ -86,5 +95,11 @@ public class LevelMananger : MonoBehaviour
             textSecond.text = i.ToString();
             yield return new WaitForSeconds(1);
         }
+    }
+
+    public void HideRevival()
+    {
+        StopCoroutine(ShowRevival());
+        panelRevival.SetActive(false);
     }
 }

@@ -59,6 +59,7 @@ public class Player : MonoBehaviour
         Vector3 posTarget = new Vector3(target.position.x, transform.position.y, target.position.z);
         transform.LookAt(posTarget);
 
+        if (v == 0 && h == 0) Attack();
     }
 
     public void Hit(float damage)
@@ -76,5 +77,19 @@ public class Player : MonoBehaviour
         enabled = false;
 
         StartCoroutine(levelManager.ShowRevival());
+    }
+
+    public void Revival()
+    {
+        ani.SetBool("死亡開關", false);
+        enabled = true;
+        data.hp = data.maxHp;
+        hpvaluemanager.SetHp(data.hp, data.maxHp);
+        levelManager.HideRevival();
+    }
+
+    private void Attack()
+    {
+        ani.SetTrigger("攻擊觸發");
     }
 }
