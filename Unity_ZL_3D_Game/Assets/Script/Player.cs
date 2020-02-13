@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Linq;
 
 public class Player : MonoBehaviour
 {
@@ -6,6 +7,8 @@ public class Player : MonoBehaviour
     public float speed = 1.5f;
     [Header("玩家資料")]
     public PlayerData data;
+    [Header("子彈")]
+    public GameObject bullet;
 
     private Rigidbody rig;
     private Joystick js;
@@ -13,6 +16,10 @@ public class Player : MonoBehaviour
     private Transform target;
     private LevelMananger levelManager;
     private HpValueManager hpvaluemanager;
+    private Vector3 posBullet;
+    private float timer;
+    private Enemy[] enemys;
+    private float[] enemysDis;
 
     private void Start()
     {
@@ -90,6 +97,45 @@ public class Player : MonoBehaviour
 
     private void Attack()
     {
-        ani.SetTrigger("攻擊觸發");
+        if (timer < data.cd)
+        {
+            timer += Time.deltaTime;
+        }
+        else
+        {
+            timer = 0;
+            ani.SetTrigger("攻擊觸發");
+
+            enemys = FindObjectsOfType<Enemy>();
+
+            enemysDis = new float[enemys.Length];
+
+            for (int i = 0; i < enemys.Length; i++)
+            {
+                enemysDis[i] = Vector3.Distance(transform.position, enemys[i].transform.position);
+            }
+
+            float min = enemysDis.Min();
+            int index = enemysDis.ToList().IndexOf(min);
+            Vector3 enemyPos = enemys[index].transform.position;
+            enemyPos.y = transform.position.y;
+            transform.LookAt(enemyPos);
+
+            posBullet = transform.position + transform.forward * data.attackZ + transform.up * data.attackY;
+            Vector3 angle = transform.eulerAngles;
+            Quaternion qua = Quaternion.Euler(angle.x + 90, angle.y, angle.z);
+            GameObject temp = Instantiate(bullet, posBullet, qua);
+            temp.GetComponent<Rigidbody>().AddForce(transform.forward * data.BulletSpeed);
+            temp.AddComponent<Bullet>();
+            temp.GetComponent<Bullet>().damage = data.attack;
+            temp.GetComponent<Bullet>().player = true;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        posBullet = transform.position + transform.forward * data.attackZ + transform.up * data.attackY;
+        Gizmos.DrawSphere(posBullet, 0.1f);
     }
 }

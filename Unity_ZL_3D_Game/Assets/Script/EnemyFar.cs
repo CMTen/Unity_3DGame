@@ -6,6 +6,8 @@ public class EnemyFar : Enemy
     [Header("子彈")]
     public GameObject bullet;
 
+    private Vector3 posBullet;
+
     protected override void Attack()
     {
         base.Attack();
@@ -24,9 +26,8 @@ public class EnemyFar : Enemy
 
         temp.AddComponent<Bullet>();
         temp.GetComponent<Bullet>().damage = data.attack;
+        temp.GetComponent<Bullet>().player = false;
     }
-
-    private Vector3 posBullet;
 
     private void OnDrawGizmos()
     {

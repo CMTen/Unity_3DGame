@@ -7,11 +7,19 @@ public class Bullet : MonoBehaviour
     /// </summary>
     public float damage;
 
+    public bool player; 
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name == "機器人")
+        if (!player && other.name == "機器人")
         {
             other.GetComponent<Player>().Hit(damage);
-        }      
+            Destroy(gameObject);
+        }
+        else if (player && other.tag == "敵人")
+        {
+            other.GetComponent<Enemy>().Hit(damage);
+            Destroy(gameObject);
+        }
     }
 }

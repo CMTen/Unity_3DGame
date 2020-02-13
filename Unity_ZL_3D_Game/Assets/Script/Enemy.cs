@@ -8,10 +8,9 @@ public class Enemy : MonoBehaviour
 
     private Animator ani;
     private NavMeshAgent nav;
-
     private Transform target;
-
     private float timer;
+    private HpValueManager hpvaluemanager;
 
     private void Start()
     {
@@ -22,6 +21,7 @@ public class Enemy : MonoBehaviour
         nav.stoppingDistance = data.stopDistance;
 
         target = GameObject.Find("機器人").transform;
+        hpvaluemanager = GetComponentInChildren<HpValueManager>();
     }
 
     private void Update()
@@ -79,9 +79,13 @@ public class Enemy : MonoBehaviour
     /// 
     /// </summary>
     /// <param name="damage"></param>
-    private void Hit(float damage)
+    public void Hit(float damage)
     {
-
+        if (ani.GetBool("死亡開關")) return;
+        data.hp -= damage;
+        hpvaluemanager.SetHp(data.hp, data.maxHp);
+        StartCoroutine(hpvaluemanager.ShowValue(damage, "-", Color.white));
+        if (data.hp <= 0) Dead();
     }
 
     /// <summary>

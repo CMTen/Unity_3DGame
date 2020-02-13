@@ -14,3 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: -10
   maxHp: 200
+  attackY: 3
+  attackZ: 2.5
+  cd: 0.7
+  BulletSpeed: 1500
+  attack: 20
