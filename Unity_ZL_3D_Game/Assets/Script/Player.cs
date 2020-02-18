@@ -103,13 +103,21 @@ public class Player : MonoBehaviour
         }
         else
         {
+            // 取得所有敵人
+            enemys = FindObjectsOfType<Enemy>();
+
+            // 過關
+            if (enemys.Length == 0)
+            {
+                levelManager.Pass();
+                return;
+            }
+
             timer = 0;
             ani.SetTrigger("攻擊觸發");
 
-            enemys = FindObjectsOfType<Enemy>();
-
+            // 取得所有敵人位置
             enemysDis = new float[enemys.Length];
-
             for (int i = 0; i < enemys.Length; i++)
             {
                 enemysDis[i] = Vector3.Distance(transform.position, enemys[i].transform.position);

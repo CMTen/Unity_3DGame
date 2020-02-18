@@ -66,6 +66,10 @@ public class LevelMananger : MonoBehaviour
         shin.SetActive(true);
     }
 
+    /// <summary>
+    /// 載入下一關
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator NextLevel()
     {
         print("載入下一關");
@@ -97,9 +101,27 @@ public class LevelMananger : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 關閉復活畫面
+    /// </summary>
     public void HideRevival()
     {
         StopCoroutine(ShowRevival());
         panelRevival.SetActive(false);
+    }
+
+    /// <summary>
+    /// 過關：開門、金幣前往玩家
+    /// </summary>
+    public void Pass()
+    {
+        OpenDoor();
+
+        Item[] items = FindObjectsOfType<Item>();
+
+        for (int i = 0; i < items.Length; i++)
+        {
+            items[i].pass = true;
+        }
     }
 }

@@ -25,4 +25,7 @@ public class EnemyData : ScriptableObject
 
     [Header("遠距離子彈速度"), Range(0, 5000)]
     public float BulletSpeed;
+
+    [Header("金幣生成數量範圍")]
+    public Vector2 CoinRange;
 }
