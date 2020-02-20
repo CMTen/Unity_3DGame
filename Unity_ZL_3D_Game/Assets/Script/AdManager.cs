@@ -9,7 +9,7 @@ public class AdManager : MonoBehaviour, IUnityAdsListener
 
     private void Start()
     {
-        Advertisement.Initialize(googleID, true);
+        Advertisement.Initialize(googleID, false);
         Advertisement.AddListener(this);
         player = FindObjectOfType<Player>();
     }
@@ -49,7 +49,7 @@ public class AdManager : MonoBehaviour, IUnityAdsListener
                     break;
                 case ShowResult.Finished:
                     print("完成");
-                    player.Revival();
+                    GameObject.Find("機器人").GetComponent<Player>().Revival();
                     break;
             }
         }

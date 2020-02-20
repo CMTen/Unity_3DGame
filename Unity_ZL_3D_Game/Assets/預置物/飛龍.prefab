@@ -1508,7 +1508,7 @@ GameObject:
   - component: {fileID: 3696576313332562815}
   - component: {fileID: 3696576313332562809}
   - component: {fileID: 3696576313332562814}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u98DB\u9F8D"
   m_TagString: "\u6575\u4EBA"
   m_Icon: {fileID: 0}
@@ -1522,7 +1522,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3696576313340998601}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.1570659, y: 5.230055, z: -1.813776}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1916,20 +1916,15 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4992862817743880893, guid: f11a22cc5ebb82d47a52912863e44646,
+    - target: {fileID: 4992862818931934781, guid: f11a22cc5ebb82d47a52912863e44646,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.01
+      propertyPath: m_Color.r
+      value: 0.97885394
       objectReference: {fileID: 0}
-    - target: {fileID: 4992862817743880893, guid: f11a22cc5ebb82d47a52912863e44646,
+    - target: {fileID: 4992862818931934781, guid: f11a22cc5ebb82d47a52912863e44646,
         type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 4992862817743880893, guid: f11a22cc5ebb82d47a52912863e44646,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.01
+      propertyPath: m_Color.g
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f11a22cc5ebb82d47a52912863e44646, type: 3}

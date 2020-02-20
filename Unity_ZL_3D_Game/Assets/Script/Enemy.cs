@@ -101,6 +101,7 @@ public class Enemy : MonoBehaviour
         ani.SetBool("死亡開關", true);
         nav.isStopped = true;
         Destroy(this);
+        Destroy(gameObject, 0.3f);
         CreateCoin();
     }
 

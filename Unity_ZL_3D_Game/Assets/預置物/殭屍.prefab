@@ -990,7 +990,7 @@ GameObject:
   - component: {fileID: 1260602434703486676}
   - component: {fileID: 1260602434703486678}
   - component: {fileID: 1260602434703486677}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6BAD\u5C4D"
   m_TagString: "\u6575\u4EBA"
   m_Icon: {fileID: 0}
@@ -1004,7 +1004,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1260602435046384091}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.157066, y: 5.230055, z: 3.186224}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1215,6 +1215,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4992862818931934781, guid: f11a22cc5ebb82d47a52912863e44646,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.97885394
+      objectReference: {fileID: 0}
+    - target: {fileID: 4992862818931934781, guid: f11a22cc5ebb82d47a52912863e44646,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f11a22cc5ebb82d47a52912863e44646, type: 3}
